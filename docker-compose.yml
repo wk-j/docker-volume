@@ -1,0 +1,20 @@
+version: "2"
+
+services:
+  postgres:
+    container_name: k-postgres
+    image: postgres:10.1
+    mem_limit: 1500m
+    environment:
+      - POSTGRES_PASSWORD=12345
+      - POSTGRES_USER=edocument
+      - POSTGRES_DB=edocument
+    command: postgres -c max_connections=300 -c log_min_messages=LOG
+    ports:
+      - 5432:5432
+    volumes:
+      - xyz:/var/lib/postgresql/data
+
+volumes:
+  xyz:
+    external: true
